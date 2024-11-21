@@ -8,22 +8,26 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var titleOn: Bool = true
+    @AppStorage("rowHeight") private var rowHeight: Double = 60
+        
     var body: some View {
         TabView {
-                   InfoView()
-                       .tabItem {
-                           Label("Info", systemImage: "book")
-                       }
-                   HelloView()
-                       .tabItem {
-                           Label("Hello", systemImage: "hand.wave")
-                       }
-                   SettingsView()
-                       .tabItem {
-                           Label("Settings", systemImage: "gearshape")
-                       }
+            InfoView(titleOn: titleOn, rowHeight: rowHeight)
+                .tabItem {
+                    Label("Info", systemImage: "book")
+                }
+
+            HelloView()
+                .tabItem {
+                    Label("Hello", systemImage: "hand.wave")
+                }
+
+            SettingsView(titleOn: $titleOn, rowHeight: $rowHeight)
+                .tabItem {
+                    Label("Settings", systemImage: "gearshape")
+                }
         }
-        
     }
 }
 
